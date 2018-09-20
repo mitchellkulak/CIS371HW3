@@ -39,4 +39,44 @@ function findElementsWithId(rootId, klazName) {
    */
   function createTable() {
     /* complete this function */
+    
+    var targetDiv = document.getElementsByClassName("table-home")[0];
+    var numRows = targetDiv.getAttribute("data-gv-row");
+    var numCols = targetDiv.getAttribute("data-gv-column");
+    var newTable = document.createElement("table");
+
+    var lipsum = new LoremIpsum();
+
+    var words = lipsum.generate((numCols + 1));
+    var wordArray = [];
+    var wordCount = 0;
+    words.split(' ').forEach( (word) => {
+      wordArray[wordCount] = word;
+      wordCount++;
+    });
+
+    console.log(numCols)
+    for (var j = 0; j <= numRows ; j++) {
+      var row = document.createElement("tr");
+
+      for (var i = 0; i <= numCols; i++) {
+          if(j == 0){
+            var header = document.createElement("th");
+            header.innerHTML = "Header " + (i + 1).toString();
+            row.appendChild(header);
+          }
+          else{    
+            var cell = document.createElement("td");
+            cell.innerHTML = wordArray[(i * j)];
+            row.appendChild(cell);
+          }
+      }
+      newTable.appendChild(row);
+  }
+
+
+
+    targetDiv.appendChild(newTable);
+    console.log(targetDiv.className);
+
   }
