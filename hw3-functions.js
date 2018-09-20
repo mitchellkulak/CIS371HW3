@@ -15,7 +15,19 @@
  */
 function findElementsWithId(rootId, klazName) {
     /* complete this function */
-    return 0;
+    var numberOfElements = 0;
+    var rootElement = document.getElementById(rootId);
+    var childElements = rootElement.children;
+
+    for (var i = 0; i < childElements.length; i++) {
+              if(childElements[i].id.length >= 1){
+                  childElements[i].classList.add(klazName);
+                  numberOfElements++;
+              }
+            }
+
+    /* complete this function */
+    return numberOfElements;
   }
   
   /**
